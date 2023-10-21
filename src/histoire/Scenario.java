@@ -1,6 +1,6 @@
 package histoire;
 
-import personnages.Chef; 
+import personnages.Chef;  
 import personnages.Druide;
 import personnages.Gaulois;
 import villagegaulois.Etal;

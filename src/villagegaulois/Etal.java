@@ -47,8 +47,15 @@ public class Etal {
 		return "L'étal est libre";
 	}
 
-	public String acheterProduit(int quantiteAcheter, Gaulois acheteur) {
-		if (etalOccupe) {
+	public String acheterProduit(int quantiteAcheter, Gaulois acheteur) throws IllegalArgumentException,IllegalStateException {
+		//if (etalOccupe) {
+		try {
+			if ( quantiteAcheter < 1 ) {
+				throw new IllegalArgumentException("La quantite doit etre positive.");
+			}
+			if(!etalOccupe) {
+				throw new IllegalStateException("l'etal n'est pas occupé");
+			}
 			StringBuilder chaine = new StringBuilder();
 			chaine.append(acheteur.getNom() + " veut acheter " + quantiteAcheter
 					+ " " + produit + " à " + vendeur.getNom());
@@ -70,8 +77,13 @@ public class Etal {
 						+ vendeur.getNom() + "\n");
 			}
 			return chaine.toString();
+		} catch (NullPointerException e) {
+		
+			e.printStackTrace();
+			StringBuilder chainevide = new StringBuilder();
+			return chainevide.toString();
 		}
-		return null;
+		//return null;
 	}
 
 	public boolean contientProduit(String produit) {
